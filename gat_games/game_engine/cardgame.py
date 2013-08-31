@@ -170,7 +170,7 @@ class CardGameRound(TurnBasedGame):
 
     def get_context(self, player):
         context = super(CardGameRound, self).get_context(player)
-        context['hand'] = self.hands[str(self.player_in_turn)]
+        context['hand'] = self.hands[str(player)]
         return context
 
     def distribute_cards_to_each_player(self, amount):
