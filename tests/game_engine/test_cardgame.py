@@ -63,6 +63,10 @@ class DeckTests(unittest.TestCase):
     def setUp(self):
         self.deck = Deck()
 
+    def test_equal(self):
+        self.assertEquals(Deck(), Deck())
+        self.assertNotEquals(Deck(), Deck().build())
+
     def test_len(self):
         self.assertEquals(0, len(self.deck))
 

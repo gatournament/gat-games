@@ -71,6 +71,12 @@ class Deck(object):
     def __len__(self):
         return self.count()
 
+    def __eq__(self, other):
+        return self.cards == other.cards
+
+    def __ne__(self, other):
+        return self.cards != other.cards
+
     def __str__(self):
         return ','.join([str(card) for card in self.cards])
 
@@ -88,6 +94,7 @@ class Deck(object):
         for suit in self.Card.suits:
             for rank in self.Card.ranks:
                 self.cards.append(self.Card(rank, suit))
+        return self
 
     def contains(self, card):
         return card in self.cards
