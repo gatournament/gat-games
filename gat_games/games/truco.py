@@ -141,7 +141,7 @@ class StartRoundCommand(StartRoundCommand):
     def read_context(self, game):
         self.kwargs['center_card'] = game.center_card
         for player in game.players:
-            self.kwargs[str(player)] = game.hand(player).getCards()
+            self.kwargs[str(player)] = game.hand(player).get_cards()
 
 
 class TrucoRound(CardGameRound):

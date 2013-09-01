@@ -80,7 +80,12 @@ class Deck(object):
     def __str__(self):
         return ','.join([str(card) for card in self.cards])
 
-    def getCards(self):
+    def clone(self):
+        deck = Deck()
+        deck.cards = self.cards[:]
+        return deck
+
+    def get_cards(self):
         return self.cards
 
     def count(self):

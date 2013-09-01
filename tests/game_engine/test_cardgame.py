@@ -73,6 +73,9 @@ class DeckTests(unittest.TestCase):
     def test_count(self):
         self.assertEquals(0, self.deck.count())
 
+    def test_clone(self):
+        self.assertEquals(Deck().build(), Deck().build().clone())
+
     def test_deck_print_niceley(self):
         self.deck.push(Card(AS, SPADES))
         self.assertEquals('AS-1', str(self.deck))
