@@ -239,6 +239,13 @@ class Game(object):
         odict = self.__dict__.copy()
         return odict
 
+    def add_player(self, player):
+        self.players.append(player)
+        player.game = self
+
+    def remove_player(self, player):
+        self.players.remove(player)
+
     def log(self, message, level=logging.INFO):
         GATLogger.log(message, prefix=self.__class__.__name__, level=level)
 
@@ -251,7 +258,7 @@ class Game(object):
     def execute_command(self, command):
         self.save_command(command)
         command.process(self)
-        if self.is_the_end():
+        if self.is_the_end() and not issubclass(command.__class__, EndGameCommand):
             raise EndGame()
 
     def set_no_contest(self, reason):
@@ -452,7 +459,8 @@ class GameComposite(Game):
         return self.games[-1]
 
     def new_round(self):
-        round_game = self.Round(self.random.randint(1, 999999), self.players, **self.kwargs)
+        round_game = self.Round(self.random.randint(1, 999999), self.players[:], **self.kwargs)
+        round_game.parent = self
         # self.games.append(round_game)
         return round_game
 
